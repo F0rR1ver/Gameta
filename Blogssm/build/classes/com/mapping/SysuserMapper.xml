@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SysuserDAO">
+
+    <resultMap type="com.bean.Sysuser" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="usertype" property="usertype"/>
+      <result column="username" property="username" />
+      <result column="realname" property="realname"/>
+      <result column="sex" property="sex"/>
+      <result column="age" property="age"/>
+      <result column="tel" property="tel"/>
+      <result column="delstatus" property="delstatus"/>
+      <result column="savetime" property="savetime"/>
+    </resultMap>
+    
+    
+    <select id="selectOne" resultMap="BaseResultMap">
+      select * from sysuser where username = #{username} and userpwd = #{userpwd} and delstatus=0
+    </select>
+    
+    <select id="selectAll" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from sysuser where 1=1 and delstatus=0
+      <if test="key!=null and key!=''">
+        and (username like "%"#{key}"%" or realname like "%"#{key}"%")
+      </if>
+      <if test="usertype!=null and usertype!=''">
+        and usertype=#{usertype}
+      </if>
+      <if test="fid!=null and fid!=''">
+      and fid=#{fid}
+      </if>
+      <if test="sid!=null and sid!=''">
+      and sid=#{sid}
+      </if>
+      order by id desc
+    </select>
+    
+    <select id="selectAllxs" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from sysuser where 1=1 and delstatus=0 and usertype="维护人员"
+      <if test="key!=null and key!=''">
+        and (username like "%"#{key}"%" or realname like "%"#{key}"%")
+      </if>
+      order by id desc
+    </select>
+
+	<select id="findById" resultType="com.bean.Sysuser" parameterType="int">
+		select * from sysuser where id=#{id}
+	</select>
+
+	
+	<update id="update" parameterType="com.bean.Sysuser">
+	  update sysuser
+	  <set>
+	    <if test="usertype!=null and usertype!=''">
+	       usertype=#{usertype},
+	    </if>
+	    <if test="realname!=null and realname!=''">
+	       realname=#{realname},
+	    </if>
+	    <if test="userpwd!=null and userpwd!=''">
+	       userpwd=#{userpwd},
+	    </if>
+	    <if test="sex!=null and sex!=''">
+	       sex=#{sex},
+	    </if>
+	    <if test="age!=null and age!=''">
+	       age=#{age},
+	    </if>
+	    <if test="tel!=null and tel!=''">
+	       tel=#{tel},
+	    </if>
+	  </set>
+	  where id=#{id}
+	</update>
+	
+	<update id="updatepwd" >
+		update sysuser set userpwd=#{1} where id=#{0}
+	</update>
+	
+	<select id="checkUsername" parameterType="String" resultMap="BaseResultMap">
+	  select * from sysuser where username =#{username} and delstatus=0
+	</select>
+	
+	<insert id="add" parameterType="com.bean.Sysuser">
+	  insert into sysuser values(null,#{usertype},#{username},#{userpwd},#{realname},#{sex},#{age},#{tel},0,#{savetime})
+	</insert>
+	
+	<update id="delete" parameterType="int">
+	update sysuser set delstatus=1 where id=#{id}
+	</update>
+	
+	<select id="usernamecheck" parameterType="string" resultMap="BaseResultMap">
+	  select * from sysuser where username=#{username}
+	</select>
+	
+	
+	
+</mapper>
+

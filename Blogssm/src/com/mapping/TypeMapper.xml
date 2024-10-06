@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TypeDAO">
+
+    <resultMap type="com.bean.Type" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="name" property="name"/>
+      <result column="delstatus" property="delstatus"/>
+    </resultMap>
+    
+    <select id="selectAll" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from type where 1=1  and delstatus=0 
+      <if test="key!=null and key!=''">
+        and (name like "%"#{key}"%")
+      </if>
+      order by id desc
+    </select>
+    
+
+	<select id="findByid" resultType="com.bean.Type" parameterType="int">
+		select * from type where id=#{id}
+	</select>
+
+	
+	<update id="update" parameterType="com.bean.Type">
+	  update type
+	  <set>
+	    <if test="name!=null and name!=''">
+	       name=#{name},
+	    </if>
+	  </set>
+	  where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.bean.Type">
+	  insert into type values(null,#{name},0)
+	</insert>
+	
+	<update id="delete" parameterType="int">
+	update type set delstatus=1 where id=#{id}
+	</update>
+	
+	
+</mapper>
+

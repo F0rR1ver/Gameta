@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ImgDAO">
+    <resultMap type="com.bean.Img" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="filename" property="filename" />
+    </resultMap>
+    
+    <select id="selectAll" parameterType="HashMap" resultMap="BaseResultMap">
+      select * from img where 1=1
+      order by id desc
+    </select>
+    
+    <insert id="add" parameterType="com.bean.Img">
+      insert into img values(null,#{filename})
+    </insert>
+    
+    
+    <delete id="delete" parameterType="int">
+   delete from img where id=#{id}
+	</delete>    
+	
+	
+</mapper>
+

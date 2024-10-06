@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Gameta</title>
+  <style type="text/css">
+	*{
+		margin:0 auto;
+		padding:0;
+	}
+	body{
+		background-image:url(movies/界面/232323.jpg);
+	}
+	a{
+      text-decoration: none;
+    }
+	@font-face{
+		font-family:aa;
+		src:url("font/msyh.ttc");
+	}
+	@font-face{
+		font-family:bb;
+		src:url("font/STXINGKA.TTF");
+	}
+	.box0{
+		width:100%;
+		height:30px;
+		background:black;
+	}
+	#top{
+		width:100%;
+		height:30px;
+		line-height:30px;
+		margin:0 auto;
+		position:relative;
+		margin-left:40px;
+	}
+	.left{
+		width:300px;
+		height:30px;
+		position:absolute;
+	}
+	.right{
+		width:600px;
+		height:30px;
+		float:right;
+	}
+	#top li{
+		float:left;
+		list-style:none;
+		font-family:'aa';
+		text-align:center;
+		font-size:18px;
+		font-weight:bold;
+		color:#E8E8E8;
+	}
+	#top .line{
+		width:10px;
+		color:#E8E8E8;
+	}
+	.left li{
+		width:50px;	
+	}
+	.left li a{
+		color:#E8E8E8;
+	}
+	.left li a:hover{
+		color:#F44336;
+		cursor:pointer;
+	 }
+	.right li{
+		width:100px;
+	}
+	.right li span{
+		padding:10px;
+	}	
+	.right li span:hover{
+		color:#F44336;
+		cursor:pointer;
+	 }
+	.right .list{
+		position:relative;
+	}
+	.right #list_cur{
+		width:103px; 
+		display:none; 
+		position:absolute;  
+		top:30px; 
+		background-color:#F7F7F7; 
+		border:1px solid #EEE;
+		z-index:1;
+	}
+	.right #list_cur a{
+		display:block; 
+		padding:0 10px; 
+		line-height:28px; 
+		color:#6C6C6C;
+	}
+	.right #list_cur a:hover{
+		background:#E5E2E2;
+	}
+	.box1{
+		height:125px;
+		margin-bottom:33px;
+		position: relative;
+	}
+	.box1 p{
+		float:left;
+		width:250px;
+		height:62.5px;
+		position: absolute;
+		top: 40%;
+		left:50px;
+		font-family:'bb';
+		font-size:5em;
+		color:#F44336;
+		
+	}
+	.box2{
+		height:83px;
+		width:100%;
+  		background-color:rgba(255,109,26,0.8);
+		display:flex;
+		justify-content:space-around;
+		box-shadow: 0 0 10px grey;
+		border-bottom:3px solid grey;
+	}
+	.item{
+		color:black;
+		margin:25px;
+		background-color:rgba(255,109,26,0);
+		font-size:25px;
+		text-align:center;
+		font-family:'aa';
+		font-weight:bold;
+	}
+	.box2 .item:hover{
+		color:white;
+		cursor:pointer;
+	}
+	.box3{
+		width: 100%;
+		height: 542px;
+		position: relative;
+		background-image:url(movies/界面/2.jpg);
+	}
+	.container {
+	  width: 1000px;
+	  height: 542px;
+      position: absolute;
+      margin:40px auto 0 auto;
+      box-shadow: 0 0 10px grey;
+      overflow: hidden;
+	  left:100px;
+	  z-index:1;
+	}
+	#wrap {
+		position: absolute;
+		width:7000px;
+		height:542px;
+		z-index:1;
+	}
+	#wrap img {
+		float:left;
+		width:1000px;
+		height:542px;
+	}
+	.container .buttons span {
+		position: absolute;
+		bottom:20px;
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background-color: #FCED0A;
+		text-align: center;
+		color:white;
+		cursor: pointer;
+		z-index: 2;
+	}
+	#bottom1{
+		left:430px;
+	}
+	#bottom2{
+		left:460px;
+	}
+	#bottom3{
+		left:490px;
+	}
+	#bottom4{
+		left:520px;
+	}
+	#bottom5{
+		left:550px;
+	}
+	.container .buttons span.on{
+		background-color: grey;
+	}
+    .container .arrow {
+		position: absolute;
+		width:40px;
+		height:70px;
+		top: 40%;
+		color: white;
+		padding:0px 14px;
+		border-radius: 50%;
+		font-size: 50px;
+		text-align: center;
+		background-color: rgba(0,0,0,0.2);
+		z-index: 2;
+		display: none;
+    }
+    #arrow_left {
+		left: 10px;
+    }
+    #arrow_right {
+		right: 10px;
+    }
+    .container:hover .arrow {
+		display: block;
+    }
+    .container .arrow:hover {
+		background-color: rgba(0,0,0,0.5);
+    }
+	.xiangqing
+	{
+		position:absolute;
+		height:542px;
+		width:600px;
+		right:100px;
+		margin:40px auto 0 auto;
+		box-shadow: 0 0 10px grey;
+		z-index: 2;
+		background-color:rgba(204,198,195,0.5);
+	}
+	.xian1
+	{
+		margin:10px 0px;
+	}
+	.xian1 p
+	{
+		text-align:center;
+		color:#6C6C6C;
+		font-size:18px;
+	}
+	.xian1 p:hover
+	{
+		cursor:pointer;
+	}
+	.xiao:hover
+	{
+		color:white;
+	}
+	.xiangqing a
+	{
+		display:block;
+		width:100px;
+		height:30px;
+		margin:25px 0px 0px 500px;
+	}
+	.xiangqing a:hover
+	{
+		color:white;
+	}
+	.box4{
+		width:100%;
+		height:800px;
+		position: relative;
+		background-image:url(movies/界面/3.jpg);
+
+	}
+	#sbox1{
+		height:800px;
+		width:600px;
+		left:100px;
+		margin:80px auto 0 auto;
+		box-shadow: 0 0 10px grey;
+		position:absolute;
+		background-color:black;
+	}
+	#sbox1 video{
+		height:800px;
+		width:600px;
+
+	}
+	#sbox2{
+		width:1000px;
+		height:800px;
+		right:100px;
+		position:absolute;
+		margin:80px auto 0 auto;
+	}
+	#tab_btn{
+		position: absolute;
+		box-shadow: 0 0 10px grey;
+		width:1000px;
+		height:100px;
+
+	}
+	#tab_btn ul{
+		height:100px;
+		display:flex;
+		justify-content:space-around;
+		background-color:rgba(255,109,26,0.8);
+	}
+	#tab_btn ul li{
+		margin:31px;
+		list-style:none;
+		font-size:28px;
+		text-align:center;
+		font-family:'aa';
+		background-color:rgba(255,109,26,0);
+		font-weight:bold;
+	}
+	#tab_btn ul li:hover{
+		color:white;
+		cursor:pointer;
+	}
+	#fenlei{
+		position: absolute;
+		top:100px;
+		width:1000px;
+		height:700px;
+		box-shadow: 0 0 10px grey;
+		background-color:rgba(204,198,195,0.5);
+	}
+	.fenlei_z{
+		height:700px;
+		width:1000px;
+		display:flex;
+		flex-wrap: wrap;
+		align-content:space-around;
+		display:none;
+	}
+	.fenlei_z:first-child{
+		display:flex;
+	}
+	.wenzi{
+		position:relative;
+		width:200px;
+		height:300px;
+		background:rgba(0,0,0,0.5);
+		font-size: 22px;
+		bottom:34px;
+		text-align:center;
+		transition:0.5s;	
+	}
+	.wenzi p{
+		width:200px;
+		color:#FFFFFF;
+		background-color:rgba(0,0,0,0.3);
+	}
+	.item1{
+		margin:25px;
+		height:300px;
+		width:200px;
+		position:relative;
+		overflow:hidden;
+		box-shadow: 0 0 10px grey;
+	}
+	.item1 img{
+		width:200px;
+		height:300px;
+	}
+	.item1:hover .wenzi{
+		bottom:280px;
+		background-color:rgba(0,0,0,0.5);
+	}
+	.item1:hover .wenzi p{
+		color:#FFFFFF;
+	}
+	.box5{
+		width:100%;
+		height:150px;
+		background-image:url(movies/界面/4.jpg);
+		background-repeat:repeat-y;
+		margin:120px auto 0 auto;
+		position: relative;
+
+	}
+	.footer{
+	padding-top:25px;
+		
+	}
+	.footer p{
+		text-align:center;
+		font-size:20px;
+		font-weight:bold;
+	}
+  </style>
+
+ </head>
+ <body>
+  	<div class="box">
+		<div class="box0">
+			<div id="top">
+				<ul class="left">
+					<li><a href="http://localhost:8080/Blogssm/login.jsp">登录</a></li>
+					<li><a href="http://localhost:8080/Blogssm/register.jsp">注册</a></li>
+				</ul>
+				<ul class="right">
+					<li class="list" onmouseover="change('list_cur','block')" onmouseout="change('list_cur','none')">
+							<span>个人中心</span>
+							<div id="list_cur">
+								<a href="#">个人空间</a>
+								<a href="#">账户安全</a>
+								<a href="#">修改密码</a>
+								<a href="#">上传视频</a>
+								<a href="#">下载应用</a>
+								<a href="#">常用联系</a>
+							</div> 
+					</li>
+					<li class="line">|</li>
+					<li><span>收藏夹</span></li>
+					<li class="line">|</li>
+					<li><span>历史记录</span></li>
+					<li class="line">|</li>
+					<li><span>使用须知</span></li>
+					<li class="line">|</li>
+					<li><span>联系我们</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="box1">
+			<p>Gameta</p>
+		</div>
+ 		<div class="box2">
+				<a href="#" class="item">首页</a>
+				<a href="Movieshare排行榜.html" class="item">排行榜</a>
+				<a href="http://localhost:8080/Blogssm/index.do" class="item">文章</a>
+				<a href="#" class="item">用户动态</a>
+				<a href="#" class="item">开通会员</a>
+		</div>
+ 		<div class="box3">
+			  <div class="container">
+					<div id="wrap" style="left: -1000px;">
+						<img src="movies/滚动/1.jpg" alt="">
+						<img src="movies/滚动/2.jpg" alt="">
+						<img src="movies/滚动/3.png" alt="">
+						<img src="movies/滚动/4.jpg" alt="">
+						<img src="movies/滚动/5.jpg" alt="">
+						<img src="movies/滚动/1.jpg" alt="">
+						<img src="movies/滚动/2.jpg" alt="">
+					</div>
+					<div class="buttons">
+						<span class="on" id="bottom1"></span>
+						<span id="bottom2"></span>
+						<span id="bottom3"></span>
+						<span id="bottom4"></span>
+						<span id="bottom5"></span>
+					</div>
+					<a href="javascript:;"  class="arrow" id="arrow_left">&lt;</a>
+					<a href="javascript:;"  class="arrow" id="arrow_right">&gt;</a>
+			 </div>
+			<div class="xiangqing">
+				<div class="xian1">
+					<p class="btitile" style="font-weight:bold;font-size:33px;color:#FF6D24;padding:18px;">《艾尔登法环》：开创奇幻新未来</p></br/>
+				</div>
+				<div class="xian1">
+					<p class="xiao">电影《新·奥特曼》公布新预告，日本5月13日上映</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">《水银疗养院》试玩版将于4月22日登陆Steam</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">潜行游戏《UNDETECTED》新实机演示公布</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">NS版《十三机兵防卫圈》今日发售，官方公布贺图</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">贝塞斯达启动器将于4月27日起逐步停止服务</p></br/>
+				</div>
+				<div class="xian1">
+					<p class="xiao">《时空勇士（Live a Live）》新宣传短片公布</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">Stoic正在与Xbox合作开发新游戏</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">《王国之心 4》正式公布，野村哲也绘制的20周年纪念插图一并公开</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">藤本树新作短篇漫画《さよなら絵梨》</p>
+				</div>
+				<div class="xian1">
+					<p class="xiao">HBO Max新作预告！正联&权游要来了</p>
+				</div>
+				<a href="http://localhost:8080/Blogssm/wenzhanglb.do" target="_black" class="more">MORE+</a>
+			</div>
+		</div>
+ 		<div class="box4">
+			<div id="sbox1">
+				<video muted="src" autoplay loop>
+					<source src="movies/界面/2077.mp4" type="video/mp4" />
+				</video>
+			</div>
+			<div id="sbox2">
+				<div id="tab_btn">
+					<ul>
+						<li>RPG</li>
+						<li>ACT</li>
+						<li>FPS</li>
+						<li>SLG</li>
+						<li>AVG</li>
+					</ul>
+				</div>
+				<div id="fenlei">
+					<div class="fenlei_z juqing">
+						<div class="item1" >
+							<img src="movies/RPG/艾尔登法环.jpg" alt="">
+							<div class="wenzi">
+									<p>艾尔登法环</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/只狼：影逝二度.jpg" alt="">
+							<div class="wenzi">
+								<p>只狼：影逝二度</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/黑暗之魂：重制版.jpg" alt="">
+							<div class="wenzi">
+								<p>黑暗之魂：重制版</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/宝可梦阿尔宙斯.jpg" alt="">
+							<div class="wenzi">
+								<p>宝可梦阿尔宙斯</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/宝可梦珍珠钻石.jpg" alt="">
+							<div class="wenzi">
+								<p>宝可梦珍珠钻石</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/宝可梦日月.jpg" alt="">
+							<div class="wenzi">
+								<p>宝可梦日月</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/宝可梦剑盾.jpg" alt="">
+							<div class="wenzi">
+								<p>宝可梦剑盾</p>
+							</div>
+						</div>
+						<div class="item1">
+							<img src="movies/RPG/宝可梦朱紫.jpg" alt="">
+							<div class="wenzi">
+								<p>宝可梦朱紫</p>
+							</div>
+						</div>
+					</div>
+					<div class="fenlei_z xiju">
+						<div class="item1" >
+								<img src="movies/ACT/塞尔达传说：荒野之息.jpg" alt="">
+								<div class="wenzi">
+									<p>塞尔达传说:荒野之息</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/怪物猎人：世界.jpg" alt="">
+								<div class="wenzi">
+									<p>怪物猎人：世界</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/怪物猎人：崛起.jpg" alt="">
+								<div class="wenzi">
+									<p>怪物猎人：崛起</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/战神4.jpg" alt="">
+								<div class="wenzi">
+									<p>战神4</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/地平线：西之绝境.jpg" alt="">
+								<div class="wenzi">
+									<p>地平线：西之绝境</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/星之卡比：探索发现.jpg" alt="">
+								<div class="wenzi">
+									<p>星之卡比：探索发现</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/幽灵线：东京.jpg" alt="">
+								<div class="wenzi">
+									<p>幽灵线：东京</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/ACT/小缇娜的奇幻之地.jpg" alt="">
+								<div class="wenzi">
+									<p>小缇娜的奇幻之地</p>
+								</div>
+						</div>
+					</div>
+					<div class="fenlei_z dongzuo">
+						<div class="item1" >
+								<img src="movies/AVG/生化危机8.jpg" alt="">
+								<div class="wenzi">
+									<p>生化危机8</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/最后生还者2.jpg" alt="">
+								<div class="wenzi">
+									<p>最后生还者2</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/极限脱出3：零时困境.jpg" alt="">
+								<div class="wenzi">
+									<p>极限脱出3：零时困境</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/霍格沃茨之遗.jpg" alt="">
+								<div class="wenzi">
+									<p>霍格沃茨之遗</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/大逆转裁判：编年史.jpg" alt="">
+								<div class="wenzi">
+									<p>大逆转裁判：编年史</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/命运石之门.jpg" alt="">
+								<div class="wenzi">
+									<p>命运石之门</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/命运石之门0.jpg" alt="">
+								<div class="wenzi">
+									<p>命运石之门0</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/AVG/极限脱出：九人游戏.jpg" alt="">
+								<div class="wenzi">
+									<p>极限脱出：九人游戏</p>
+								</div>
+						</div>
+					</div>
+					<div class="fenlei_z yinyue">
+						<div class="item1" >
+								<img src="movies/FPS/反恐精英.png" alt="">
+								<div class="wenzi">
+									<p>反恐精英</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/APEX.jpg" alt="">
+								<div class="wenzi">
+									<p>APEX</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/彩虹六号：围攻.jpg" alt="">
+								<div class="wenzi">
+									<p>彩虹六号：围攻</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/彩虹六号：异种.jpg" alt="">
+								<div class="wenzi">
+									<p>彩虹六号：异种</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/光环：无限.jpg" alt="">
+								<div class="wenzi">
+									<p>光环：无限</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/战地2042.jpg" alt="">
+								<div class="wenzi">
+									<p>战地2042</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/使命召唤：先锋.jpg" alt="">
+								<div class="wenzi">
+									<p>使命召唤：先锋</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/FPS/战争机器5.jpg" alt="">
+								<div class="wenzi">
+									<p>战争机器5</p>
+								</div>
+						</div>
+					</div>
+					<div class="fenlei_z aiqing">
+						<div class="item1" >
+								<img src="movies/SLG/火焰纹章：风花雪月.jpg" alt="">
+								<div class="wenzi">
+									<p>火焰纹章：风花雪月</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/文明6.jpg" alt="">
+								<div class="wenzi">
+									<p>文明6</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/战锤：全面战争2.jpg" alt="">
+								<div class="wenzi">
+									<p>战锤：全面战争2</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/全面战争：战锤3.jpg" alt="">
+								<div class="wenzi">
+									<p>全面战争：战锤3</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/帝国时代4.jpg" alt="">
+								<div class="wenzi">
+									<p>帝国时代4</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/群星.jpg" alt="">
+								<div class="wenzi">
+									<p>群星</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/三国：全面战争.jpg" alt="">
+								<div class="wenzi">
+									<p>三国：全面战争</p>
+								</div>
+						</div>
+						<div class="item1">
+								<img src="movies/SLG/红色警戒.jpg" alt="">
+								<div class="wenzi">
+									<p>红色警戒</p>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box5">
+			<div class="footer">
+				<p><span style="color:red;letter-spacing:10px;">免责声明:</span>本网站内容收集于互联网。Gameta不承担任何由于内容的合法性及健康性所引起的争议和法律责任。</p>
+				<p>欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。</p>
+			</div>
+		</div>
+	<script>
+		function change(myid,mode){
+			document.getElementById(myid).style.display=mode;		
+		}
+	</script>
+
+
+	<script>
+		var wrap = document.getElementById("wrap");
+		var next = document.getElementById("arrow_right");
+		var prev = document.getElementById("arrow_left");
+		var label=0;
+		next.onclick = function () {
+			next_pic();
+		}
+		prev.onclick = function () {
+			prev_pic();
+		}	
+		function next_pic () {
+			var newLeft;
+			label++;
+			console.log(label);
+			if(label > 4){
+				label = 0;
+			}
+			showCurrentDot();
+			if(wrap.style.left === "-6000px"){
+				newLeft = -2000;
+			}
+			else{
+				newLeft = parseInt(wrap.style.left)-1000;
+			}
+			
+			wrap.style.left = newLeft + "px";
+		}
+		function prev_pic () {
+			var newLeft;
+			label--;
+			if(label < 0){
+				label = 4;
+			}
+			showCurrentDot();
+			if(wrap.style.left === "0px"){
+				newLeft = -6000;
+			}
+			else{
+				newLeft = parseInt(wrap.style.left)+1000;
+			}
+			wrap.style.left = newLeft + "px";
+		}
+		
+		var timer = null;
+			function autoPlay () {
+				timer = setInterval(function () {
+					next_pic();
+			},2000);
+		}
+		autoPlay();
+
+		var container = document.getElementsByClassName("container");
+		container.onmouseenter = function () {
+			clearInterval(timer);
+		}
+		container.onmouseleave = function () {
+			autoPlay();  
+		}
+		
+		var dots = document.getElementsByTagName('span');
+		function showCurrentDot(){
+			for(var z = 0; z <dots.length; z++){
+				dots[z].className = "";
+			}
+			dots[label+5].className = "on";
+		}
+		for (var i = 5; i <10; i++){
+			(
+
+				function(i){
+					dots[i].onclick = function (){ 
+						var dis = label - i+5;
+						if(label == 4 && parseInt(wrap.style.left)!==-5000){
+							dis = dis - 5;   
+						}
+						 if(label == 0 && parseInt(wrap.style.left)!== -1000){
+							dis = 5 + dis;
+						}
+						wrap.style.left = (parseInt(wrap.style.left) + dis * 1000)+"px";
+						label = i-5;
+						showCurrentDot();
+					}
+				}
+			)(i);    
+		}	
+	</script>
+
+
+	<script>
+			var tab_btn=document.getElementById('tab_btn');
+			var arrbtn=tab_btn.getElementsByTagName('li');
+			var tab_con=document.getElementsByClassName('fenlei');
+			var arrcon=fenlei.getElementsByClassName('fenlei_z');
+			var index;
+			for(index=0;index<=4;index++)
+			{
+				arrbtn[index].num=index;
+				arrbtn[index].onclick=function(){
+					arrcon[this.num].style.display='flex';
+					for (var j=0;j<=4 ;j++ ){
+						if (j!=this.num)
+						{
+							arrcon[j].style.display='none';
+						}
+					}
+				}
+			}
+	</script>
+
+ </body>
+</html>

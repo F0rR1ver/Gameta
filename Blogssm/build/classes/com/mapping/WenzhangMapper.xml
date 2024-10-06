@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WenzhangDAO">
+
+    <resultMap type="com.bean.Wenzhang" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="filename" property="filename"/>
+      <result column="title" property="title" />
+      <result column="content" property="content"/>
+      <result column="savetime" property="savetime"/>
+      <result column="typeid" property="typeid"/>
+      <result column="mid" property="mid"/>
+      <result column="shstatus" property="shstatus"/>
+    </resultMap>
+    
+    <select id="selectAll" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from wenzhang where 1=1 
+      <if test="key!=null and key!=''">
+        and (title like "%"#{key}"%")
+      </if>
+      <if test="key1!=null and key1!=''">
+        and typeid = ""#{key1}""
+      </if>
+      <if test="mid!=null and mid!=''">
+        and mid = #{mid}
+      </if>
+      <if test="shstatus!=null and shstatus!=''">
+        and shstatus = #{shstatus}
+      </if>
+      <if test="typeid!=null and typeid!=''">
+        and typeid = #{typeid}
+      </if>
+      order by id desc
+    </select>
+    
+    
+
+	<select id="findById" resultType="com.bean.Wenzhang" parameterType="int">
+		select * from wenzhang where id=#{id}
+	</select>
+
+	
+	<update id="update" parameterType="com.bean.Wenzhang">
+	  update wenzhang
+	  <set>
+	    <if test="filename!=null and filename!=''">
+	       filename=#{filename},
+	    </if>
+	    <if test="title!=null and title!=''">
+	       title=#{title},
+	    </if>
+	    <if test="content!=null and content!=''">
+	       content=#{content},
+	    </if>
+	    <if test="savetime!=null and savetime!=''">
+	       savetime=#{savetime},
+	    </if>
+	    <if test="typeid!=null and typeid!=''">
+	       typeid=#{typeid},
+	    </if>
+	    <if test="shstatus!=null and shstatus!=''">
+	       shstatus=#{shstatus},
+	    </if>
+	  </set>
+	  where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.bean.Wenzhang">
+	  insert into wenzhang values(null,#{filename},#{title},#{content},now(),#{typeid},#{mid},'待审核')
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+	delete from wenzhang where id=#{id}
+	</delete>
+	
+	
+</mapper>
+

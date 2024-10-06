@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SeatDAO">
+    <resultMap type="com.bean.Seat" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="seatno" property="seatno" jdbcType="VARCHAR"/>
+      <result column="iskx" property="iskx" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <insert id="add" parameterType="com.bean.Seat">
+      insert into Seat values(null,#{seatno},#{iskx})
+    </insert>
+    
+    <select id="selectAll" parameterType="HashMap" resultMap="BaseResultMap">
+      select * from Seat where 1=1 
+      <if test="seatno!=null and seatno!=''">
+        and seatno=#{seatno}
+      </if>
+      <if test="iskx!=null and iskx!=''">
+        and iskx=#{iskx}
+      </if>
+      order by id desc
+    </select>
+    
+    
+    <update id="update" parameterType="com.bean.Seat">
+      update Seat
+      <set>
+        <if test="iskx!=null and iskx!=''">
+          iskx=#{iskx},
+        </if>
+      </set>
+      where id=#{id}
+    </update>
+    
+    
+    <delete id="delete">
+      delete from seat
+    </delete>
+    
+    <select id="findbyid" parameterType="Int" resultType="Seat">
+      select * from seat where id=#{id}
+    </select>
+    
+    
+	
+</mapper>
+

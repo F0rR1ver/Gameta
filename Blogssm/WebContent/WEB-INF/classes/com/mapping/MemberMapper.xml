@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MemberDAO">
+
+    <resultMap type="com.bean.Member" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="filename" property="filename" jdbcType="VARCHAR"/>
+      <result column="uname" property="uname" jdbcType="VARCHAR"/>
+      <result column="upass" property="upass" jdbcType="VARCHAR"/>
+      <result column="tname" property="tname" jdbcType="VARCHAR"/>
+      <result column="sex" property="sex" jdbcType="VARCHAR"/>
+      <result column="brithtime" property="brithtime" jdbcType="VARCHAR"/>
+      <result column="tel" property="tel" jdbcType="VARCHAR"/>
+      <result column="aihao" property="aihao" jdbcType="VARCHAR"/>
+      <result column="delstatus" property="delstatus" jdbcType="VARCHAR"/>
+      <result column="yue" property="yue" jdbcType="DOUBLE"/>
+    </resultMap>
+    
+    <insert id="add" parameterType="com.bean.Member">
+	  insert into member values(null,#{filename},#{uname},#{upass},#{tname},#{sex},#{brithtime},#{tel},#{aihao},#{delstatus},#{yue})
+	</insert>
+    
+    <update id="update" parameterType="com.bean.Member">
+	  update member
+	  <set>
+	    <if test="filename!=null and filename!=''">
+	       filename=#{filename},
+	    </if>
+	    
+	    <if test="upass!=null and upass!=''">
+	       upass=#{upass},
+	    </if>
+	    <if test="tname!=null and tname!=''">
+	       tname=#{tname},
+	    </if>
+	    <if test="sex!=null and sex!=''">
+	       sex=#{sex},
+	    </if>
+	    <if test="brithtime!=null and brithtime!=''">
+	       brithtime=#{brithtime},
+	    </if>
+	    <if test="tel!=null and tel!=''">
+	       tel=#{tel},
+	    </if>
+	    <if test="aihao!=null and aihao!=''">
+	       aihao=#{aihao},
+	    </if>
+	    <if test="delstatus!=null and delstatus!=''">
+	       delstatus=#{delstatus},
+	    </if>
+	  </set>
+	  where id=#{id}
+	</update>
+    
+    
+     <update id="updateYue" parameterType="com.bean.Member">
+	  update member set yue=#{yue} where id=#{id}
+	</update>
+    
+    <select id="selectAll" parameterType="HashMap" resultMap="BaseResultMap">
+      select * from member where 1=1 and delstatus=0
+      <if test="key!=null and key!=''">
+        and (uname like "%"#{key}"%" or tname like "%"#{key}"%")
+      </if>
+      <if test="uname!=null and uname!=''">
+        and uname=#{uname}
+      </if>
+      <if test="upass!=null and upass!=''">
+        and upass=#{upass}
+      </if>
+      order by id desc
+    </select>
+
+	<select id="findById" resultType="com.bean.Member" parameterType="int">
+		select * from member where id=#{id}
+	</select>
+	
+	
+</mapper>
+

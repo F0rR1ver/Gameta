@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+   <title>Gameta排行榜</title>
+  <style type="text/css">
+	*{
+		margin:0 auto;
+		padding:0;
+	}
+	body{
+		background-color:#1B1311;
+	}
+	a{
+      text-decoration: none;
+    }
+	@font-face{
+		font-family:aa;
+		src:url("font/msyh.ttc");
+	}
+	@font-face{
+		font-family:bb;
+		src:url("font/STXINGKA.TTF");
+	}
+	.box0{
+		width:100%;
+		height:30px;
+		background:black;
+	}
+	#top{
+		width:100%;
+		height:30px;
+		line-height:30px;
+		margin:0 auto;
+		position:relative;
+		margin-left:40px;
+	}
+	.left{
+		width:300px;
+		height:30px;
+		position:absolute;
+	}
+	.right{
+		width:600px;
+		height:30px;
+		float:right;
+	}
+	#top li{
+		float:left;
+		list-style:none;
+		font-family:'aa';
+		text-align:center;
+		font-size:18px;
+		font-weight:bold;
+		color:#E8E8E8;
+	}
+	#top .line{
+		width:10px;
+		color:#E8E8E8;
+	}
+	.left li{
+		width:50px;	
+	}
+	.left li a{
+		color:#E8E8E8;
+	}
+	.left li a:hover{
+		color:#F44336;
+		cursor:pointer;
+	 }
+	.right li{
+		width:100px;
+	}
+	.right li span{
+		padding:10px;
+	}	
+	.right li span:hover{
+		color:black;
+		cursor:pointer;
+	 }
+	.right .list{
+		position:relative;
+	}
+	.right #list_cur{
+		width:103px; 
+		display:none; 
+		position:absolute;  
+		top:30px; 
+		background-color:#F7F7F7; 
+		border:1px solid #EEE;
+		z-index:1;
+	}
+	.right #list_cur a{
+		display:block; 
+		padding:0 10px; 
+		line-height:28px; 
+		color:#6C6C6C;
+	}
+	.right #list_cur a:hover{
+		background:#E5E2E2;
+	}
+	.all{
+		width:100%;
+		height:4000px;
+		position:relative;
+	}
+	.box1{
+		width:1000px;
+		height:4000px;
+		position:absolute;
+		left:200px;
+		margin-top:80px;
+	}
+	.sbox1{
+		width:1000px;
+		height:150px;
+	}
+	.sbox1 .toptext {
+		font-size:8em;
+		font-family:'bb';
+		text-align: center;
+		color:#FF6D24;
+		position:absolute;
+		top:15px;
+		left:260px;
+	}
+	.sbox2{
+		width:920px;
+		height:400px;
+		box-shadow: 0 0 10px grey;
+		margin-top:50px;
+		border:3px solid #FF6D24;
+		padding: 40px;
+		color: #ff6d24;
+	}
+	.sbox2log{
+		font-size:4em;
+		font-family:'bb';
+		font-weight:bold;
+		display:inline;
+	}
+	.ssbox2{
+		width:300px;
+		height:50px;
+		float:right;
+		background-color:#ff6d24;
+		color: #1B1311;
+		font-family:'aa';
+		font-size:20px;
+		font-weight:bold;
+		text-align:center;
+		line-height:50px;	
+	}
+	.text1{
+		height:330px;
+		position:relative;
+	}
+	.text1 p{
+		position:absolute;
+		bottom:0px;
+		font-family:'aa';
+		font-size:18px;
+	}
+	.card{
+		width:1000px;
+		height:600px;
+		margin-top:50px;
+		position:relative;
+	}
+	.card .card-text{
+		position:absolute;
+		width:600px;
+		height:540px;
+		background-color:#43321F;
+		padding:30px;
+	}
+	.card-text .title{
+		color:#EFC459;
+		font-weight:bold;
+		font-family:'aa';
+		font-size:36px;
+	}
+	.card-text .text2{
+		width:430px;
+		height:350px;
+		position:absolute;
+		left:30px;
+		color:#AF8E43;
+		font-family:'aa';
+		font-size:26px;
+		word-wrap: break-word; 
+	}
+	.card-text .line{
+		color:#F8F306;
+		font-family:'aa';
+		font-size:25px;
+		font-weight:bold;
+		position:absolute;
+		bottom:90px;
+	}
+	.card-text .timetext{
+		color:#F9CC5C;
+		font-family:'aa';
+		font-size:18px;
+		font-weight:bold;
+	}
+	#SPECIAL{
+		position:absolute;
+		bottom:55px;
+	}
+	#time{
+		position:absolute;
+		bottom:30px;
+	}
+	.card-img{
+		position:absolute;
+		width:430px;
+		height:580px;
+		left:500px;
+		top:10px;
+		border:2px solid #8D850D;
+
+	}
+	.card-img img{
+		width:430px;
+		height:580px;
+	}
+	.box2{
+		width:600px;
+		height:4080px;
+		right:0px;
+		position:absolute;
+		box-shadow: 0 0 10px grey;
+		background-color:#43321F;
+	}
+	.inbox2{
+		width:500px;
+		height:2280px;
+		position:fixed;
+		top:25%;
+		left:1370px;
+
+	}
+	.inbox2 li{
+		list-style:none;
+		font-size:38px;
+		margin:22px;
+	}
+	.inbox2 li a{
+		color:#F6F106;
+	}
+	.inbox2 li a:hover{
+		color:#5E4F1B;
+	}
+	#shengming{
+		color:#FF6D24;
+	}
+	#shengming:hover{
+		color:#A1471B;
+	}
+
+   </style>
+
+ </head>
+ <body>
+  	<div class="box">
+		<div class="box0">
+			<div id="top">
+				<ul class="left">
+					<li><a href="http://localhost:8080/Blogssm/login.jsp">登录</a></li>
+					<li><a href="http://localhost:8080/Blogssm/register.jsp">注册</a></li>
+				</ul>
+				<ul class="right">
+					<li class="list" onmouseover="change('list_cur','block')" onmouseout="change('list_cur','none')">
+							<span>个人中心</span>
+							<div id="list_cur">
+								<a href="#">个人空间</a>
+								<a href="#">账户安全</a>
+								<a href="#">修改密码</a>
+								<a href="#">上传视频</a>
+								<a href="#">下载应用</a>
+								<a href="#">常用联系</a>
+							</div> 
+					</li>
+					<li class="line">|</li>
+					<li><span>收藏夹</span></li>
+					<li class="line">|</li>
+					<li><span>历史记录</span></li>
+					<li class="line">|</li>
+					<li><span>使用须知</span></li>
+					<li class="line">|</li>
+					<li><span>联系我们</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="all">
+			<div class="box1">
+				<div class="sbox1">
+					<a href="Movieshare.html" class="toptext">Gameta</a>
+				</div>
+				<div class="sbox2" id="idsbox2">
+					<div class="log">
+						<div class="sbox2log">Gameta</div>
+						<div class="ssbox2">2022年度游戏提名征集计划</div>
+					</div>
+					<div class="text1">
+						<p>本页面内提及的与年度游戏有关的内容（包括但不限于文本、图片、音频、视频）等，均为基于年度游戏上发起的同人创作与二次创作。页面内呈现的内容并不构成所选游戏中的故事情节、世界设定及其他相关内容的要约，亦不代表。除特别声明部分之外，页面相关内容的著作权及最终解释权均归 Gameta 所有。</p>
+					</div>
+				</div>
+				<div class="sbox3"> 
+					<div class="card" id="card1">
+						<div class="card-text">
+							<div class="title">Top1：Elden Ring</div></br/>
+							<div class="text2">《艾尔登法环》是一款以正统黑暗奇幻世界为舞台的动作RPG游戏。走进辽阔的场景与地下迷宫探索未知，挑战困难重重的险境，享受克服困境时的成就感吧。不仅如此，登场角色之间的利害关系谱成的群像剧，更是不容错过。</div>
+							<div class="info">
+								<p class="line">___</p></br/>
+								<p class="timetext" id="SPECIAL">SPECIAL ARTICLE</p>
+								<p class="timetext" id="time">2022-02-25</p>
+							</div>
+						</div>
+						<div class="card-img">
+							<img src="movies/排行榜/1.jpg" alt="">
+						</div>
+					</div>
+					<div class="card" id="card2">
+						<div class="card-text">
+							<div class="title">Top2：Pokemon: Arceus</div></br/>
+							<div class="text2">《宝可梦传说：阿尔宙斯》的冒险舞台是过去的神奥地区。神奥地区是个颇具特色的地方，中央耸立着天冠山，并且拥有广阔的大自然，同时也是《宝可梦钻石·珍珠》的冒险舞台。而这次的故事则是发生在很久以前的神奥地区，并且当时还没有宝可梦训练家和宝可梦联盟的概念。</div>
+							<div class="info">
+								<p class="line">___</p></br/>
+								<p class="timetext" id="SPECIAL">SPECIAL ARTICLE</p>
+								<p class="timetext" id="time">2022-01-28</p>
+							</div>
+						</div>
+						<div class="card-img">
+							<img src="movies/排行榜/2.jpg" alt="">
+						</div>
+					</div>
+					<div class="card" id="card3">
+						<div class="card-text">
+							<div class="title">Top3：DARK SOULS</div></br/>
+							<div class="text2">《黑暗之魂》是一款设定在充满暗黑奇幻元素世界的全新动作RPG游戏。刺激的地下城，激烈地怪物战斗和突破性的在线元素构成了一款真正独特的RPG体验。《黑暗之魂》用无缝连接的世界设定打破了阻隔，激发玩家探险游戏世界和创造独特的游戏体验。当玩家碰上强大的敌人，探索出全新的地方，这一准确的挑战构建系统和奖励机制将带来很大的成就感。</div>
+							<div class="info">
+								<p class="line">___</p></br/>
+								<p class="timetext" id="SPECIAL">SPECIAL ARTICLE</p>
+								<p class="timetext" id="time">2018-05-24</p>
+							</div>
+						</div>
+						<div class="card-img">
+							<img src="movies/排行榜/3.jpg" alt="">
+						</div>
+					</div>
+					<div class="card" id="card4">
+						<div class="card-text">
+							<div class="title">Top4：Monster Hunter</div></br/>
+							<div class="text2">本作为卡普空《怪物猎人》系列新作，故事发生在“炎火村”，一个风箱炼铁盛行的山明水秀之乡。大量怪物疯狂来袭的“百龙夜行”即将到来，由多只怪物与统领它们的首领组成的“怪物群”向村庄发起袭击。整个地图到处都是大型怪物的身影……前所未有的狩猎体验正等待着猎人们！</div>
+							<div class="info">
+								<p class="line">___</p></br/>
+								<p class="timetext" id="SPECIAL">SPECIAL ARTICLE</p>
+								<p class="timetext" id="time">2021-03-26</p>
+							</div>
+						</div>
+						<div class="card-img">
+							<img src="movies/排行榜/4.jpg" alt="">
+						</div>
+					</div>
+					<div class="card" id="card5">
+						<div class="card-text">
+							<div class="title">Top5：Counter-Strike</div></br/>
+							<div class="text2">《反恐精英：全球攻势》包含全新地图，角色与武器，同时将向经典CS发布升级。另外，游戏还引入全新的游戏模式，竞技配对系统，排行榜等。新的对战模式分为休闲和竞技两种。在休闲模式中，玩家的攻击将不会对队友造成误伤，可以跨团队和敌方聊天，系统还将自动为人物穿上防弹衣。</div>
+							<div class="info">
+								<p class="line">___</p></br/>
+								<p class="timetext" id="SPECIAL">SPECIAL ARTICLE</p>
+								<p class="timetext" id="time">2012-08-23</p>
+							</div>
+						</div>
+						<div class="card-img">
+							<img src="movies/排行榜/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box2">
+				<div class="inbox2">
+					 <ul>
+						<li><a href="#idsbox2" id="shengming">Gamta年度游戏提名</a></li>
+						<li><a href="#card1">Top1:Elden Ring</a></li>
+						<li><a href="#card2">Top2:Pokemon: Arceus</a></li>
+						<li><a href="#card3">Top3:DARK SOULS</a></li>
+						<li><a href="#card4">Top4:Monster Hunter</a></li>
+						<li><a href="#card5">Top5:Counter-Strike</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>		
+ </body>
+ <script>
+		function change(myid,mode){
+			document.getElementById(myid).style.display=mode;
+			if(mode == 'block'){
+				document.getElementById(myid).style.borderTop="none";
+				document.getElementById(myid).parentNode.style.backgroundColor="F7F7F7";
+			}
+			else{
+				document.getElementById(myid).parentNode.style.backgroundColor="";
+				document.getElementById(myid).parentNode.style.border="";
+			}		
+		}
+	</script>
+</html>

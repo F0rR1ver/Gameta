@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MemberDAO">
+
+    <resultMap type="com.bean.Member" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="utype" property="utype"/>
+      <result column="filename" property="filename" />
+      <result column="uname" property="uname"/>
+      <result column="tname" property="tname"/>
+      <result column="sex" property="sex"/>
+      <result column="age" property="age"/>
+      <result column="tel" property="tel"/>
+      <result column="mail" property="mail"/>
+      <result column="weixin" property="weixin"/>
+      <result column="srtime" property="srtime"/>
+      <result column="delstatus" property="delstatus"/>
+      <result column="savetime" property="savetime"/>
+    </resultMap>
+    
+    
+    <select id="selectOne" resultMap="BaseResultMap">
+      select * from member where uname = #{uname} and upass = #{upass} and delstatus=0
+    </select>
+    
+    <select id="selectAll" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from member where 1=1 and delstatus=0
+      <if test="key!=null and key!=''">
+        and (uname like "%"#{key}"%" or tname like "%"#{key}"%")
+      </if>
+      <if test="utype!=null and utype!=''">
+        and utype=#{utype}
+      </if>
+      <if test="fid!=null and fid!=''">
+      and fid=#{fid}
+      </if>
+      <if test="sid!=null and sid!=''">
+      and sid=#{sid}
+      </if>
+      order by id desc
+    </select>
+    
+    <select id="selectAllxs" parameterType="hashmap" resultMap="BaseResultMap">
+      select * from member where 1=1 and delstatus=0 and usertype="会员"
+      <if test="key!=null and key!=''">
+        and (uname like "%"#{key}"%" or tname like "%"#{key}"%")
+      </if>
+      order by id desc
+    </select>
+
+	<select id="findById" resultType="com.bean.Member" parameterType="int">
+		select * from member where id=#{id}
+	</select>
+
+	
+	<update id="update" parameterType="com.bean.Member">
+	  update member
+	  <set>
+	    <if test="utype!=null and utype!=''">
+	       utype=#{utype},
+	    </if>
+	    <if test="filename!=null and filename!=''">
+	       filename=#{filename},
+	    </if>
+	    <if test="tname!=null and tname!=''">
+	       tname=#{tname},
+	    </if>
+	    <if test="sex!=null and sex!=''">
+	       sex=#{sex},
+	    </if>
+	    <if test="age!=null and age!=''">
+	       age=#{age},
+	    </if>
+	    <if test="tel!=null and tel!=''">
+	       tel=#{tel},
+	    </if>
+	    <if test="mail!=null and mail!=''">
+	       mail=#{mail},
+	    </if>
+	    <if test="weixin!=null and weixin!=''">
+	       weixin=#{weixin},
+	    </if>
+	    <if test="srtime!=null and srtime!=''">
+	       srtime=#{srtime},
+	    </if>
+	  </set>
+	  where id=#{id}
+	</update>
+	
+	<update id="updatepwd" >
+		update member set upass=#{1} where id=#{0}
+	</update>
+	
+	<select id="checkUname" parameterType="String" resultMap="BaseResultMap">
+	  select * from member where uname =#{uname} and delstatus=0
+	</select>
+	
+	<insert id="add" parameterType="com.bean.Member">
+	  insert into member values(null,#{utype},#{filename},#{uname},#{upass},#{tname},#{sex},#{age},#{tel},#{mail},#{weixin},#{srtime},#{savetime},0)
+	</insert>
+	
+	<update id="delete" parameterType="int">
+	update member set delstatus=1 where id=#{id}
+	</update>
+	
+</mapper>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.YuyueDAO">
+    <resultMap type="com.bean.Yuyue" id="BaseResultMap">
+      <id column="id" property="id" jdbcType="INTEGER"/>
+      <result column="memberid" property="memberid" jdbcType="VARCHAR"/>
+      <result column="seatid" property="seatid" jdbcType="VARCHAR"/>
+      <result column="savetime" property="savetime" jdbcType="VARCHAR"/>
+      <result column="shstatus" property="shstatus" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <insert id="add" parameterType="com.bean.Yuyue">
+      insert into Yuyue values(null,#{memberid},#{seatid},#{savetime},#{shstatus})
+    </insert>
+    
+    <select id="selectAll" parameterType="HashMap" resultMap="BaseResultMap">
+      select * from Yuyue where 1=1
+      <if test="key!=null and key!=''">
+        and memberid in (select id from member where tname like "%"#{key}"%") 
+      </if>
+      <if test="memberid!=null and memberid!=''">
+        and memberid=#{memberid}
+      </if>
+      <if test="flag!=null and flag!=''">
+        and shstatus not in ('离座','已拒绝')
+      </if>
+      order by id desc
+    </select>
+    
+    
+    <update id="update" parameterType="com.bean.Yuyue">
+      update Yuyue
+      <set>
+        <if test="shstatus!=null and shstatus!=''">
+          shstatus=#{shstatus},
+        </if>
+      </set>
+      where id=#{id}
+    </update>
+    
+    <select id="findById" parameterType="com.bean.Yuyue" resultType="com.bean.Yuyue">
+      select * from Yuyue where id=#{id}
+    </select>
+    
+    <delete id="delete" parameterType="Int">
+      delete from yuyue where id=#{id}
+    </delete>
+    
+    <delete id="deleteAll">
+      delete from yuyue 
+    </delete>
+    
+    
+    
+	
+</mapper>
+
